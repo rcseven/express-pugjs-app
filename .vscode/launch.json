@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "chrome",
+            "name": "127.0.0.1:3000/",
+            "request": "launch",
+            "url": "127.0.0.1:3000/"
+        }
+    ]
+}
