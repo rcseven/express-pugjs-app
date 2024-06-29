@@ -3,4 +3,18 @@ node_modules/
 
 # Ignore all .env files
 .env*
-config.env
+
+#dist directory
+dist/
+dist/bundle.js
+dist/bundle.js.map
+
+# Ignore parcel bundle
+public/js/bundle.js
+public/js/bundle.js.map
+
+# Ignore all .cache files
+.cache/
+
+# Ignore package-lock.json file
+package-lock.json

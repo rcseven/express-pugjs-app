@@ -6,7 +6,7 @@ const User = require('../../models/userModel');
 const Review = require('../../models/reviewModel');
 
 dotenv.config({
-    path: './config.env'
+    path: './.env'
 });
 
 const DB = process.env.DATABASE.replace(
