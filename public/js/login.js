@@ -1,25 +1,37 @@
-/* eslint-disable no-undef */
-const login = async (email, password) => {
+/* eslint-disable */
+import axios from 'axios';
+import { showAlert } from './alerts';
+
+export const login = async (email, password) => {
     try {
-        const res = await axios.post(
-            'http://localhost:3000/api/v1/users/login',
-            {
+        const res = await axios({
+            method: 'POST',
+            url: '/api/v1/users/login',
+            data: {
                 email,
                 password
             }
-        );
+        });
+
+        if (res.data.status === 'success') {
+            showAlert('success', 'Logged in successfully!');
+            window.setTimeout(() => {
+                location.assign('/');
+            }, 1000);
+        }
     } catch (error) {
-        console.error('Login failed:', error.response.data); // Log the error response data
+        showAlert('error', error.response.data.message);
     }
 };
 
-const form = document.querySelector('.form');
-if (form)
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-
-        login(email, password);
-    });
+export const logout = async () => {
+    try {
+        const res = await axios({
+            method: 'GET',
+            url: '/api/v1/users/logout'
+        });
+        if (res.data.status === 'success') location.reload(true);
+    } catch (error) {
+        showAlert('error', 'Error logging out! Try again.');
+    }
+};
